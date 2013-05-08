@@ -4,10 +4,10 @@
 
 The MNIST database is a database of handwritten digits.
 
-The actual raw data for the database should be downloaded from the original
-URL. This package only contains the `Bob <http://www.idiap.ch/software/bob/>`_
-accessor methods to use the DB directly from python, with our certified
-protocols.
+The actual raw data for the database should be downloaded from the `original
+website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains 
+the `Bob <http://www.idiap.ch/software/bob/>`_ accessor methods to use this
+database directly from python, with our certified protocols.
 
 You would normally not install this package unless you are maintaining it. What
 you would do instead is to tie it in at the package you need to **use** it.
@@ -28,14 +28,11 @@ The package is available in two different distribution formats:
 1. You can download it from `PyPI <http://pypi.python.org/pypi>`_, or
 
 2. You can download it in its source form from `its git repository
-   <https://github.com/bioidiap/xbob.db.mnist>`_. When you download the
-   version at the git repository, you will need to run a command to recreate
-   the backend SQLite file required for its operation. This means that the
-   database raw files must be installed somewhere in this case. With option
-   ``a`` you can run in `dummy` mode and only download the raw data files for
-   the database once you are happy with your setup.
+   <https://github.com/bioidiap/xbob.db.mnist>`_. 
 
-You can mix and match points 1/2 and a/b above based on your requirements. Here
+The database raw files must be installed somewhere in your environment.
+
+You can mix and match points 1/2 above based on your requirements. Here
 are some examples:
 
 Modify your setup.py and download from PyPI
@@ -51,7 +48,7 @@ script)::
       "xbob.db.mnist",
     ],
 
-Proceed normally with your ``boostrap/buildout`` steps and you should be all
+Proceed normally with your ``bootstrap/buildout`` steps and you should be all
 set. That means you can now import the namespace ``xbob.db.mnist`` into your scripts.
 
 Modify your buildout.cfg and download from git
@@ -73,3 +70,21 @@ lines::
   [sources]
   xbob.db.mnist = git https://github.com/bioidiap/xbob.db.mnist.git
   ...
+
+
+How to use this database API
+============================
+
+After launching the python interpreter (assuming that the environment is properly set up),
+you could get the training set as follows::
+
+  >>> import xbob.db.mnist
+  >>> db = xbob.db.mnist.Database('PATH_TO_DATA_FROM_YANN_LECUN_WEBSITE') # 4 binary .gz compressed files
+  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
+
+In this case, this should return two NumPy arrays:
+
+1. `images` contain the raw data (60,000 samples of dimension 784 [28x28 pixels images])
+
+2. `labels` are the corresponding classes (digits 0 to 9) for each of the 60,000 samples
+
