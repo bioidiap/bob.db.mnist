@@ -39,3 +39,7 @@ class Interface(BaseInterface):
   def type(self):
     return 'python_integrated'
 
+  def add_commands(self, parser):
+
+    from . import __doc__ as docs
+    subparsers = self.setup_parser(parser, "MNIST database", docs)
