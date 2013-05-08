@@ -25,7 +25,7 @@ There are a few ways to achieve this:
 
 The package is available in two different distribution formats:
 
-1. You can download it from `PyPI <http://pypi.python.org/pypi>`_, or
+1. You can download it from `PyPI <http://pypi.python.org/pypi/xbob.db.mnist>`_, or
 
 2. You can download it in its source form from `its git repository
    <https://github.com/bioidiap/xbob.db.mnist>`_. 
