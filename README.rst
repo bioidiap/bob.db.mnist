@@ -12,7 +12,7 @@ being size-normalized and centered in a fixed-size image (28x28 pixels).
 The actual raw data for the database should be downloaded from the `original
 website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains 
 the `Bob <http://www.idiap.ch/software/bob/>`_ accessor methods to use this
-database directly from python, with our certified protocols.
+database directly from python.
 
 You would normally not install this package unless you are maintaining it. What
 you would do instead is to tie it in at the package you need to **use** it.
