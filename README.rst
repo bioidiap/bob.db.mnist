@@ -2,7 +2,12 @@
  MNIST Database
 ================
 
-The MNIST database is a database of handwritten digits.
+The MNIST database is a database of handwritten digits, which consists of a
+training set of 60,000 examples, and a test set of 10,000 examples. It was 
+made available by Yann Le Cun and Corinna Cortes (`MNIST database 
+<http://yann.lecun.com/exdb/mnist/>`). The data was originally extracted 
+from a larger set made available by `NIST <http://www.nist.gov/>`, before 
+being size-normalized and centered in a fixed-size image (28x28 pixels).
 
 The actual raw data for the database should be downloaded from the `original
 website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains 

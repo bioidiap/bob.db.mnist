@@ -9,9 +9,9 @@ from setuptools import setup, find_packages
 setup(
 
     name='xbob.db.mnist',
-    version='1.0.0a',
+    version='1.0.0b',
     description='MNIST Database Access API for Bob',
-    url='http://github.com/bioidiap/bob.db.mnist',
+    url='http://github.com/bioidiap/xbob.db.mnist',
     license='GPLv3',
     author='Laurent El Shafey',
     author_email='laurent.el-shafey@idiap.ch',
