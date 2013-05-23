@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import shutil
+
 class Database():
   """Wrapper class for the MNIST database of handwritten digits (http://yann.lecun.com/exdb/mnist/).
   """
@@ -28,11 +30,51 @@ class Database():
     import os
     self.m_labels = set(range(0,10))
     self.m_groups = ('train', 'test')
-    self.m_data_dir = data_dir
-    self.m_train_fname_images = os.path.join(self.m_data_dir, 'train-images-idx3-ubyte.gz')
-    self.m_train_fname_labels = os.path.join(self.m_data_dir, 'train-labels-idx1-ubyte.gz')
-    self.m_test_fname_images  = os.path.join(self.m_data_dir, 't10k-images-idx3-ubyte.gz')
-    self.m_test_fname_labels  = os.path.join(self.m_data_dir, 't10k-labels-idx1-ubyte.gz')
+    self.m_mnist_filenames = ['train-images-idx3-ubyte.gz', 'train-labels-idx1-ubyte.gz',
+      't10k-images-idx3-ubyte.gz', 't10k-labels-idx1-ubyte.gz']
+    self.m_tmp_dir = None
+    if data_dir: # Path to the data is provided
+      self.m_data_dir = data_dir
+    else:
+      if self.__db_is_installed__():
+        from pkg_resources import resource_filename
+        import os
+        self.m_data_dir = os.path.dirname(resource_filename(__name__, 'query.py'))
+      else:
+        self.m_data_dir = self.__create_tmp_dir_and_download__()
+        self.m_tmp_dir = self.m_data_dir # To avoid bad surprises to the user
+    self.m_train_fname_images = os.path.join(self.m_data_dir, self.m_mnist_filenames[0])
+    self.m_train_fname_labels = os.path.join(self.m_data_dir, self.m_mnist_filenames[1])
+    self.m_test_fname_images  = os.path.join(self.m_data_dir, self.m_mnist_filenames[2])
+    self.m_test_fname_labels  = os.path.join(self.m_data_dir, self.m_mnist_filenames[3])
+
+  def __del__(self):
+    try:
+      if self.m_tmp_dir: 
+        shutil.rmtree(self.m_tmp_dir) # delete directory
+    except OSError, e:
+      if e.errno != 2: # code 2 - no such file or directory
+        raise 'xbob.db.mnist: Error while erasing temporarily downloaded data files'
+
+  def __db_is_installed__(self):
+    from pkg_resources import resource_filename
+    import os
+    db_files = [resource_filename(__name__, k) for k in self.m_mnist_filenames]
+    for f in db_files:
+      if not os.path.exists(f):
+        return False
+    return True
+
+  def __create_tmp_dir_and_download__(self):
+    import urllib2, tempfile, os
+    tmp_directory = tempfile.mkdtemp(prefix='mnist_db')
+    print "Downloading the mnist database from http://yann.lecun.com/exdb/mnist/ ..."
+    for f in self.m_mnist_filenames:
+      url = urllib2.urlopen('http://yann.lecun.com/exdb/mnist/'+f)
+      dfile = open(os.path.join(tmp_directory, f), 'w')
+      dfile.write(url.read())
+      dfile.close()
+    return tmp_directory
 
   def __read_labels__(self, fname):
     """Reads the labels from the original MNIST label binary file"""
@@ -139,7 +181,7 @@ class Database():
       labels1 = self.__read_labels__(self.m_train_fname_labels)
       images2 = self.__read_images__(self.m_test_fname_images)
       labels2 = self.__read_labels__(self.m_test_fname_labels)
-      images = numpy.hstack([images1,images2])
+      images = numpy.vstack([images1,images2])
       labels = numpy.hstack([labels1,labels2])
     elif 'train' in groups:
       images = self.__read_images__(self.m_train_fname_images)

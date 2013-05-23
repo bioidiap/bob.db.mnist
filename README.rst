@@ -93,3 +93,17 @@ In this case, this should return two NumPy arrays:
 
 2. `labels` are the corresponding classes (digits 0 to 9) for each of the 60,000 samples
 
+
+If you don't have the data installed on your machine, you can also use the following 
+set of command that will:
+
+1. first look for the database in the xbob/db/mnist/ subdirectory and use it if is available
+
+2. or automatically download it from Yann Lecun's website into a temporary folder, that will
+be erased when the destructor of the xbob.db.mnist database is called::
+
+  >>> import xbob.db.mnist
+  >>> db = xbob.db.mnist.Database() # Check for the data files locally, and download them if required
+  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
+  >>> del db # delete the temporary downloaded files if any
+

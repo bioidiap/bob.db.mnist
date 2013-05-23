@@ -27,7 +27,7 @@ class MNISTDatabaseTest(unittest.TestCase):
   """Performs various tests on the MNIST database."""
 
   def test01_query(self):
-    db = Database('')
+    db = Database()
 
     f = db.labels()
     self.assertEqual(len(f), 10) # number of labels (digits 0 to 9)
@@ -39,4 +39,16 @@ class MNISTDatabaseTest(unittest.TestCase):
     self.assertTrue('train' in f)
     self.assertTrue('test' in f)
 
-    # TODO: Test the number of samples?
+    # Test the number of samples/labels
+    d, l = db.data(groups='train')
+    self.assertEqual(d.shape[0], 60000)
+    self.assertEqual(d.shape[1], 784)
+    self.assertEqual(l.shape[0], 60000)
+    d, l = db.data(groups='test')
+    self.assertEqual(d.shape[0], 10000)
+    self.assertEqual(d.shape[1], 784)
+    self.assertEqual(l.shape[0], 10000)
+    d, l = db.data()
+    self.assertEqual(d.shape[0], 70000)
+    self.assertEqual(d.shape[1], 784)
+    self.assertEqual(l.shape[0], 70000)
