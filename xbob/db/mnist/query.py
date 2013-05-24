@@ -194,7 +194,7 @@ class Database():
       labels = numpy.ndarray(shape=(0,), dtype=numpy.uint8)
 
     # List of indices for which the labels are in the list of requested labels
-    indices = numpy.where(numpy.in1d(labels, vlabels))[0]
+    indices = numpy.where(numpy.in1d(labels, list(vlabels)))[0]
     images = images[indices,:]
     labels = labels[indices]
 
