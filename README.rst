@@ -95,12 +95,14 @@ In this case, this should return two NumPy arrays:
 
 
 If you don't have the data installed on your machine, you can also use the following 
-set of command that will:
+set of commands that will:
 
 1. first look for the database in the xbob/db/mnist/ subdirectory and use it if is available
 
 2. or automatically download it from Yann Lecun's website into a temporary folder, that will
-be erased when the destructor of the xbob.db.mnist database is called::
+be erased when the destructor of the xbob.db.mnist database is called.
+
+::
 
   >>> import xbob.db.mnist
   >>> db = xbob.db.mnist.Database() # Check for the data files locally, and download them if required

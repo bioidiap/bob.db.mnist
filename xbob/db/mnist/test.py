@@ -19,7 +19,6 @@
 """A few checks at the MNIST database.
 """
 
-import os, sys
 import unittest
 from . import Database
 

@@ -37,7 +37,7 @@ class Interface(BaseInterface):
     return ()
 
   def type(self):
-    return 'python_integrated'
+    return 'binary'
 
   def add_commands(self, parser):
 
