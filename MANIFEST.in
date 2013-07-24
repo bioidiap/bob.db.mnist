@@ -1,2 +1,2 @@
-include README.rst
+include COPYING README.rst
 recursive-include docs *.py *.rst
