@@ -52,9 +52,9 @@ class Database():
     try:
       if self.m_tmp_dir: 
         shutil.rmtree(self.m_tmp_dir) # delete directory
-    except OSError, e:
+    except OSError as e:
       if e.errno != 2: # code 2 - no such file or directory
-        raise 'xbob.db.mnist: Error while erasing temporarily downloaded data files'
+        raise("xbob.db.mnist: Error while erasing temporarily downloaded data files")
 
   def __db_is_installed__(self):
     from pkg_resources import resource_filename
@@ -132,7 +132,7 @@ class Database():
     # perform the checks
     for parameter in parameters:
       if parameter not in valid_parameters:
-        raise ValueError, "Invalid %s '%s'. Valid values are %s, or lists/tuples of those" % (parameter_description, parameter, valid_parameters)
+        raise ValueError("Invalid %s '%s'. Valid values are %s, or lists/tuples of those" % (parameter_description, parameter, valid_parameters))
 
     # check passed, now return the list/tuple of parameters
     return parameters
