@@ -68,7 +68,7 @@ class Database():
   def __create_tmp_dir_and_download__(self):
     import urllib2, tempfile, os
     tmp_directory = tempfile.mkdtemp(prefix='mnist_db')
-    print "Downloading the mnist database from http://yann.lecun.com/exdb/mnist/ ..."
+    print("Downloading the mnist database from http://yann.lecun.com/exdb/mnist/ ...")
     for f in self.m_mnist_filenames:
       url = urllib2.urlopen('http://yann.lecun.com/exdb/mnist/'+f)
       dfile = open(os.path.join(tmp_directory, f), 'w')
