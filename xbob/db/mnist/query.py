@@ -78,7 +78,8 @@ class Database():
       if sys.version_info[0] < 3:
         # python2 technique for downloading a file
         from urllib2 import urlopen
-        with urlopen(url) as response, open(tmp_file, 'wb') as out_file:
+        with open(tmp_file, 'wb') as out_file:
+          response = urlopen(url)
           dfile.write(response.read())
 
       else:
