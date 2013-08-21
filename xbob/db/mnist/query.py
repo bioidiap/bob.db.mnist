@@ -80,7 +80,7 @@ class Database():
         from urllib2 import urlopen
         with open(tmp_file, 'wb') as out_file:
           response = urlopen(url)
-          dfile.write(response.read())
+          out_file.write(response.read())
 
       else:
         # python3 technique for downloading a file
