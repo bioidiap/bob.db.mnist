@@ -86,8 +86,9 @@ class Database():
         # python3 technique for downloading a file
         from urllib.request import urlopen
         from shutil import copyfileobj
-        with urlopen(url) as response, open(tmp_file, 'wb') as out_file:
-          copyfileobj(response, out_file)
+        with urlopen(url) as response:
+          with open(tmp_file, 'wb') as out_file:
+            copyfileobj(response, out_file)
 
     return tmp_directory
 
