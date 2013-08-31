@@ -23,7 +23,7 @@ from setuptools import setup, find_packages
 setup(
 
     name='xbob.db.mnist',
-    version='1.0.2',
+    version='1.0.3a0',
     description='MNIST Database Access API for Bob',
     url='https://pypi.python.org/pypi/xbob.db.mnist',
     license='GPLv3',
