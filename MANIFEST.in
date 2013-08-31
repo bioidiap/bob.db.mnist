@@ -1,2 +1,2 @@
-include COPYING README.rst
+include README.rst bootstrap.py buildout.cfg COPYING
 recursive-include docs *.py *.rst
