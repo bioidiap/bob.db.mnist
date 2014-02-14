@@ -51,3 +51,18 @@ class MNISTDatabaseTest(unittest.TestCase):
     self.assertEqual(d.shape[0], 70000)
     self.assertEqual(d.shape[1], 784)
     self.assertEqual(l.shape[0], 70000)
+
+  def test02_download(self):
+    # tests that the files are downloaded *and stored*, when the directory is specified
+    import tempfile, os, shutil
+    temp_dir = tempfile.mkdtemp(prefix='mnist_db_test_')
+    db = Database(temp_dir)
+    del db
+    self.assertTrue(os.path.exists(temp_dir))
+
+    # check that the database works when data is downloaded already
+    db = Database(temp_dir)
+    db.data()
+    del db
+
+    shutil.rmtree(temp_dir)

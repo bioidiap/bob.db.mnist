@@ -3,14 +3,14 @@
 ================
 
 The MNIST database is a database of handwritten digits, which consists of a
-training set of 60,000 examples, and a test set of 10,000 examples. It was 
-made available by Yann Le Cun and Corinna Cortes (`MNIST database 
-<http://yann.lecun.com/exdb/mnist/>`_). The data was originally extracted 
-from a larger set made available by `NIST <http://www.nist.gov/>`_, before 
+training set of 60,000 examples, and a test set of 10,000 examples. It was
+made available by Yann Le Cun and Corinna Cortes (`MNIST database
+<http://yann.lecun.com/exdb/mnist/>`_). The data was originally extracted
+from a larger set made available by `NIST <http://www.nist.gov/>`_, before
 being size-normalized and centered in a fixed-size image (28x28 pixels).
 
 The actual raw data for the database should be downloaded from the `original
-website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains 
+website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains
 the `Bob <http://www.idiap.ch/software/bob/>`_ accessor methods to use this
 database directly from python.
 
@@ -33,7 +33,7 @@ The package is available in two different distribution formats:
 1. You can download it from `PyPI <http://pypi.python.org/pypi/xbob.db.mnist>`_, or
 
 2. You can download it in its source form from `its git repository
-   <https://github.com/bioidiap/xbob.db.mnist>`_. 
+   <https://github.com/bioidiap/xbob.db.mnist>`_.
 
 The database raw files must be installed somewhere in your environment.
 
@@ -94,13 +94,15 @@ In this case, this should return two NumPy arrays:
 2. `labels` are the corresponding classes (digits 0 to 9) for each of the 60,000 samples
 
 
-If you don't have the data installed on your machine, you can also use the following 
+If you don't have the data installed on your machine, you can also use the following
 set of commands that will:
 
 1. first look for the database in the xbob/db/mnist/ subdirectory and use it if is available
 
-2. or automatically download it from Yann Lecun's website into a temporary folder, that will
-be erased when the destructor of the xbob.db.mnist database is called.
+2. automatically download it from Yann Lecun's website into a temporary folder that will
+   be erased when the destructor of the xbob.db.mnist database is called.
+
+3. automatically download it into the provided directory that will **not** be deleted.
 
 ::
 
@@ -108,4 +110,12 @@ be erased when the destructor of the xbob.db.mnist database is called.
   >>> db = xbob.db.mnist.Database() # Check for the data files locally, and download them if required
   >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
   >>> del db # delete the temporary downloaded files if any
+
+or
+
+::
+
+  >>> db = xbob.db.mnist.Database("Directory") # Persistently downloads files into the folder "Directory"
+  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
+  >>> del db # The download directory stays
 
