@@ -145,7 +145,7 @@ class Database():
       The list/tuple of default parameters that will be returned in case parameters is None or empty.
       If omitted, all valid_parameters are used.
     """
-    if not parameters:
+    if parameters is None:
       # parameters are not specified, i.e., 'None' or empty lists
       parameters = default_parameters if default_parameters is not None else valid_parameters
 
