@@ -77,6 +77,9 @@ class Database():
 
     if directory is None:
       directory = tempfile.mkdtemp(prefix='mnist_db')
+    elif not os.path.exists(directory):
+        os.makedirs(directory)
+
     print("Downloading the mnist database from http://yann.lecun.com/exdb/mnist/ ...")
 
     for f in self.m_mnist_filenames:
