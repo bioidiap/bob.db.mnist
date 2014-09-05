@@ -1,3 +1,18 @@
+.. vim: set fileencoding=utf-8 :
+.. Manuel Guenther <manuel.guenther@idiap.ch>
+.. Thu Sep  4 11:35:05 CEST 2014
+
+.. image:: https://travis-ci.org/bioidiap/bob.db.mnist.svg?branch=master
+   :target: https://travis-ci.org/bioidiap/bob.db.mnist
+.. image:: https://coveralls.io/repos/bioidiap/bob.db.mnist/badge.png
+   :target: https://coveralls.io/r/bioidiap/bob.db.mnist
+.. image:: http://img.shields.io/github/tag/bioidiap/bob.db.mnist.png
+   :target: https://github.com/bioidiap/bob.db.mnist
+.. image:: http://img.shields.io/pypi/v/bob.db.mnist.png
+   :target: https://pypi.python.org/pypi/bob.db.mnist
+.. image:: http://img.shields.io/pypi/dm/bob.db.mnist.png
+   :target: https://pypi.python.org/pypi/bob.db.mnist
+
 ================
  MNIST Database
 ================
@@ -30,10 +45,10 @@ There are a few ways to achieve this:
 
 The package is available in two different distribution formats:
 
-1. You can download it from `PyPI <http://pypi.python.org/pypi/xbob.db.mnist>`_, or
+1. You can download it from `PyPI <http://pypi.python.org/pypi/bob.db.mnist>`_, or
 
 2. You can download it in its source form from `its git repository
-   <https://github.com/bioidiap/xbob.db.mnist>`_.
+   <https://github.com/bioidiap/bob.db.mnist>`_.
 
 The database raw files must be installed somewhere in your environment.
 
@@ -50,11 +65,11 @@ script)::
 
     install_requires=[
       ...
-      "xbob.db.mnist",
+      "bob.db.mnist",
     ],
 
 Proceed normally with your ``bootstrap/buildout`` steps and you should be all
-set. That means you can now import the namespace ``xbob.db.mnist`` into your scripts.
+set. That means you can now import the namespace ``bob.db.mnist`` into your scripts.
 
 Modify your buildout.cfg and download from git
 ==============================================
@@ -70,10 +85,10 @@ lines::
   auto-checkout = *
   eggs = bob
          ...
-         xbob.db.mnist
+         bob.db.mnist
 
   [sources]
-  xbob.db.mnist = git https://github.com/bioidiap/xbob.db.mnist.git
+  bob.db.mnist = git https://github.com/bioidiap/bob.db.mnist.git
   ...
 
 
@@ -83,8 +98,8 @@ How to use this database API
 After launching the python interpreter (assuming that the environment is properly set up),
 you could get the training set as follows::
 
-  >>> import xbob.db.mnist
-  >>> db = xbob.db.mnist.Database('PATH_TO_DATA_FROM_YANN_LECUN_WEBSITE') # 4 binary .gz compressed files
+  >>> import bob.db.mnist
+  >>> db = bob.db.mnist.Database('PATH_TO_DATA_FROM_YANN_LECUN_WEBSITE') # 4 binary .gz compressed files
   >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
 
 In this case, this should return two NumPy arrays:
@@ -97,17 +112,17 @@ In this case, this should return two NumPy arrays:
 If you don't have the data installed on your machine, you can also use the following
 set of commands that will:
 
-1. first look for the database in the xbob/db/mnist/ subdirectory and use it if is available
+1. first look for the database in the bob/db/mnist/ subdirectory and use it if is available
 
 2. automatically download it from Yann Lecun's website into a temporary folder that will
-   be erased when the destructor of the xbob.db.mnist database is called.
+   be erased when the destructor of the bob.db.mnist database is called.
 
 3. automatically download it into the provided directory that will **not** be deleted.
 
 ::
 
-  >>> import xbob.db.mnist
-  >>> db = xbob.db.mnist.Database() # Check for the data files locally, and download them if required
+  >>> import bob.db.mnist
+  >>> db = bob.db.mnist.Database() # Check for the data files locally, and download them if required
   >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
   >>> del db # delete the temporary downloaded files if any
 
@@ -115,7 +130,7 @@ or
 
 ::
 
-  >>> db = xbob.db.mnist.Database("Directory") # Persistently downloads files into the folder "Directory"
+  >>> db = bob.db.mnist.Database("Directory") # Persistently downloads files into the folder "Directory"
   >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
   >>> del db # The download directory stays
 

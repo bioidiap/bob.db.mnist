@@ -58,7 +58,7 @@ class Database():
         shutil.rmtree(self.m_tmp_dir) # delete directory
     except OSError as e:
       if e.errno != 2: # code 2 - no such file or directory
-        raise("xbob.db.mnist: Error while erasing temporarily downloaded data files")
+        raise("bob.db.mnist: Error while erasing temporarily downloaded data files")
 
   def _db_is_installed(self, directory = None):
     from pkg_resources import resource_filename

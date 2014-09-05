@@ -2,8 +2,8 @@
 .. Laurent El Shafey <Laurent.El-Shafey@idiap.ch>
 .. Wed May 8 19:07:55 CEST 2013
 
-================
- MNIST Database
-================
+============
+ Python API
+============
 
-.. automodule:: xbob.db.mnist
+.. automodule:: bob.db.mnist

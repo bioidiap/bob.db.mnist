@@ -22,14 +22,14 @@ from setuptools import setup, find_packages
 # parameters that define our package.
 setup(
 
-    name='xbob.db.mnist',
-    version='1.0.5a0',
+    name='bob.db.mnist',
+    version='2.0.0a0',
     description='MNIST Database Access API for Bob',
-    url='https://pypi.python.org/pypi/xbob.db.mnist',
+    url='https://pypi.python.org/pypi/bob.db.mnist',
     license='GPLv3',
     author='Laurent El Shafey',
     author_email='laurent.el-shafey@idiap.ch',
-    keywords='digit recognition, bob, xbob, xbob.db, mnist',
+    keywords='digit recognition, bob, bob.db, mnist',
     long_description=open('README.rst').read(),
 
     # This line is required for any distutils based packaging.
@@ -39,30 +39,25 @@ setup(
 
     install_requires=[
       'setuptools',
-      'bob',  # base signal proc./machine learning library
+      'bob.db.base',
     ],
 
     namespace_packages = [
-      'xbob',
-      'xbob.db',
-      ],
+      'bob',
+      'bob.db',
+    ],
 
     entry_points={
 
       # declare database to bob
       'bob.db': [
-        'mnist = xbob.db.mnist.driver:Interface',
-        ],
+        'mnist = bob.db.mnist.driver:Interface',
+      ],
 
-      # declare tests to bob
-      'bob.test': [
-        'mnist = xbob.db.mnist.test:MNISTDatabaseTest',
-        ],
-
-      },
+    },
 
     classifiers = [
-      'Development Status :: 5 - Production/Stable',
+      'Development Status :: 4 - Beta',
       'Environment :: Console',
       'Intended Audience :: Developers',
       'Intended Audience :: Education',
@@ -73,5 +68,5 @@ setup(
       'Programming Language :: Python :: 3',
       'Topic :: Scientific/Engineering :: Artificial Intelligence',
       'Topic :: Database :: Front-Ends',
-      ],
+    ],
 )
