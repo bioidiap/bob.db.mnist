@@ -48,15 +48,14 @@ setup(
     ],
 
     entry_points={
-
       # declare database to bob
       'bob.db': [
         'mnist = bob.db.mnist.driver:Interface',
       ],
-
     },
 
     classifiers = [
+      'Framework :: Bob',
       'Development Status :: 4 - Beta',
       'Environment :: Console',
       'Intended Audience :: Developers',

@@ -2,8 +2,10 @@
 .. @author: Manuel Guenther <Manuel.Guenther@idiap.ch>
 .. @date:   Tue Aug 26 09:42:18 CEST 2014
 
+.. _bob.db.mnist:
+
 ==========================
- MNIST Database Protocols
+ MNIST Database Interface
 ==========================
 
 .. todolist::

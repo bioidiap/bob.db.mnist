@@ -1,136 +1,50 @@
 .. vim: set fileencoding=utf-8 :
 .. Manuel Guenther <manuel.guenther@idiap.ch>
-.. Thu Sep  4 11:35:05 CEST 2014
+.. Fri Oct 31 14:18:57 CET 2014
 
+.. image:: http://img.shields.io/badge/docs-stable-yellow.png
+   :target: http://pythonhosted.org/bob.db.mnist/index.html
+.. image:: http://img.shields.io/badge/docs-latest-orange.png
+   :target: https://www.idiap.ch/software/bob/docs/latest/bioidiap/bob.db.mnist/master/index.html
 .. image:: https://travis-ci.org/bioidiap/bob.db.mnist.svg?branch=master
    :target: https://travis-ci.org/bioidiap/bob.db.mnist
 .. image:: https://coveralls.io/repos/bioidiap/bob.db.mnist/badge.png
    :target: https://coveralls.io/r/bioidiap/bob.db.mnist
-.. image:: http://img.shields.io/github/tag/bioidiap/bob.db.mnist.png
-   :target: https://github.com/bioidiap/bob.db.mnist
+.. image:: https://img.shields.io/badge/github-master-0000c0.png
+   :target: https://github.com/bioidiap/bob.db.mnist/tree/master
 .. image:: http://img.shields.io/pypi/v/bob.db.mnist.png
    :target: https://pypi.python.org/pypi/bob.db.mnist
 .. image:: http://img.shields.io/pypi/dm/bob.db.mnist.png
    :target: https://pypi.python.org/pypi/bob.db.mnist
+.. image:: https://img.shields.io/badge/original-data--files-a000a0.png
+   :target: http://yann.lecun.com/exdb/mnist
 
-================
- MNIST Database
-================
+==================================
+ MNIST Database Interface for Bob
+==================================
 
-The MNIST database is a database of handwritten digits, which consists of a
-training set of 60,000 examples, and a test set of 10,000 examples. It was
-made available by Yann Le Cun and Corinna Cortes (`MNIST database
-<http://yann.lecun.com/exdb/mnist/>`_). The data was originally extracted
-from a larger set made available by `NIST <http://www.nist.gov/>`_, before
-being size-normalized and centered in a fixed-size image (28x28 pixels).
+The MNIST_ database is a database of handwritten digits, which consists of a training set of 60,000 examples, and a test set of 10,000 examples.
+It was made available by Yann Le Cun and Corinna Cortes.
+The data was originally extracted from a larger set made available by NIST_, before being size-normalized and centered in a fixed-size image (28x28 pixels).
 
-The actual raw data for the database should be downloaded from the `original
-website <http://yann.lecun.com/exdb/mnist/>`_. This package only contains
-the `Bob <http://www.idiap.ch/software/bob/>`_ accessor methods to use this
-database directly from python.
+This package only contains the Bob_ accessor methods to use this database directly from Python.
+It does not contain the original raw data files, which need to be obtained through the link above.
 
-You would normally not install this package unless you are maintaining it. What
-you would do instead is to tie it in at the package you need to **use** it.
-There are a few ways to achieve this:
+Installation
+------------
+To install this package -- alone or together with other `Packages of Bob <https://github.com/idiap/bob/wiki/Packages>`_ -- please read the `Installation Instructions <https://github.com/idiap/bob/wiki/Installation>`_.
+For Bob_ to be able to work properly, some dependent packages are required to be installed.
+Please make sure that you have read the `Dependencies <https://github.com/idiap/bob/wiki/Dependencies>`_ for your operating system.
 
-1. You can add this package as a requirement at the ``setup.py`` for your own
-   `satellite package
-   <https://github.com/idiap/bob/wiki/Virtual-Work-Environments-with-Buildout>`_
-   or to your Buildout ``.cfg`` file, if you prefer it that way. With this
-   method, this package gets automatically downloaded and installed on your
-   working environment, or
+Documentation
+-------------
+For further documentation on this package, please read the `Stable Version <http://pythonhosted.org/bob.db.mnist/index.html>`_ or the `Latest Version <https://www.idiap.ch/software/bob/docs/latest/bioidiap/bob.db.mnist/master/index.html>`_ of the documentation.
+For a list of tutorials on this or the other packages ob Bob_, or information on submitting issues, asking questions and starting discussions, please visit its website.
 
-2. You can manually download and install this package using commands like
-   ``easy_install`` or ``pip``.
-
-The package is available in two different distribution formats:
-
-1. You can download it from `PyPI <http://pypi.python.org/pypi/bob.db.mnist>`_, or
-
-2. You can download it in its source form from `its git repository
-   <https://github.com/bioidiap/bob.db.mnist>`_.
-
-The database raw files must be installed somewhere in your environment.
-
-You can mix and match points 1/2 above based on your requirements. Here
-are some examples:
-
-Modify your setup.py and download from PyPI
-===========================================
-
-That is the easiest. Edit your ``setup.py`` in your satellite package and add
-the following entry in the ``install_requires`` section (note: ``...`` means
-`whatever extra stuff you may have in-between`, don't put that on your
-script)::
-
-    install_requires=[
-      ...
-      "bob.db.mnist",
-    ],
-
-Proceed normally with your ``bootstrap/buildout`` steps and you should be all
-set. That means you can now import the namespace ``bob.db.mnist`` into your scripts.
-
-Modify your buildout.cfg and download from git
-==============================================
-
-You will need to add a dependence to `mr.developer
-<http://pypi.python.org/pypi/mr.developer/>`_ to be able to install from our
-git repositories. Your ``buildout.cfg`` file should contain the following
-lines::
-
-  [buildout]
-  ...
-  extensions = mr.developer
-  auto-checkout = *
-  eggs = bob
-         ...
-         bob.db.mnist
-
-  [sources]
-  bob.db.mnist = git https://github.com/bioidiap/bob.db.mnist.git
-  ...
+.. _bob: https://www.idiap.ch/software/bob
+.. _mnist: http://yann.lecun.com/exdb/mnist
+.. _nist: http://www.nist.gov
 
 
-How to use this database API
-============================
 
-After launching the python interpreter (assuming that the environment is properly set up),
-you could get the training set as follows::
-
-  >>> import bob.db.mnist
-  >>> db = bob.db.mnist.Database('PATH_TO_DATA_FROM_YANN_LECUN_WEBSITE') # 4 binary .gz compressed files
-  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
-
-In this case, this should return two NumPy arrays:
-
-1. `images` contain the raw data (60,000 samples of dimension 784 [28x28 pixels images])
-
-2. `labels` are the corresponding classes (digits 0 to 9) for each of the 60,000 samples
-
-
-If you don't have the data installed on your machine, you can also use the following
-set of commands that will:
-
-1. first look for the database in the bob/db/mnist/ subdirectory and use it if is available
-
-2. automatically download it from Yann Lecun's website into a temporary folder that will
-   be erased when the destructor of the bob.db.mnist database is called.
-
-3. automatically download it into the provided directory that will **not** be deleted.
-
-::
-
-  >>> import bob.db.mnist
-  >>> db = bob.db.mnist.Database() # Check for the data files locally, and download them if required
-  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
-  >>> del db # delete the temporary downloaded files if any
-
-or
-
-::
-
-  >>> db = bob.db.mnist.Database("Directory") # Persistently downloads files into the folder "Directory"
-  >>> images, labels = db.data(groups='train', labels=[0,1,2,3,4,5,6,7,8,9])
-  >>> del db # The download directory stays
 
