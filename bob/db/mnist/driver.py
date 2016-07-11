@@ -24,6 +24,16 @@ import os
 import sys
 from bob.db.base.driver import Interface as BaseInterface
 
+
+def download_mnist(self):
+  # Hack that will download the mnist database
+
+  import pkg_resources
+  import bob.db.mnist
+  db_folder = pkg_resources.resource_filename(__name__, '') # Defining a folder for download
+  db = bob.db.mnist.Database(data_dir=db_folder) # Downloading
+  del db
+
 class Interface(BaseInterface):
 
   def name(self):
@@ -42,4 +52,10 @@ class Interface(BaseInterface):
   def add_commands(self, parser):
 
     from . import __doc__ as docs
+    from bob.db.base.driver import download_command
     subparsers = self.setup_parser(parser, "MNIST database", docs)
+
+    parser = download_command(subparsers)
+    parser.set_defaults(func=download_mnist)
+
+
