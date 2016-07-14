@@ -6,9 +6,9 @@
    :target: http://pythonhosted.org/bob.db.mnist/index.html
 .. image:: http://img.shields.io/badge/docs-latest-orange.png
    :target: https://www.idiap.ch/software/bob/docs/latest/bioidiap/bob.db.mnist/master/index.html
-.. image:: https://travis-ci.org/bioidiap/bob.db.mnist.svg?branch=v2.0.4
+.. image:: https://travis-ci.org/bioidiap/bob.db.mnist.svg?branch=master
    :target: https://travis-ci.org/bioidiap/bob.db.mnist
-.. image:: https://coveralls.io/repos/bioidiap/bob.db.mnist/badge.svg?branch=v2.0.4
+.. image:: https://coveralls.io/repos/bioidiap/bob.db.mnist/badge.svg?branch=master
    :target: https://coveralls.io/r/bioidiap/bob.db.mnist
 .. image:: https://img.shields.io/badge/github-master-0000c0.png
    :target: https://github.com/bioidiap/bob.db.mnist/tree/master
