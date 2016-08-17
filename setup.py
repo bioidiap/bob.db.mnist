@@ -32,7 +32,7 @@ setup(
     name='bob.db.mnist',
     version=version,
     description='MNIST Database Access API for Bob',
-    url='https://github.com/bioidiap/bob.db.mnist',
+    url='https://gitlab.idiap.ch/bob/bob.db.mnist',
     license='GPLv3',
     author='Laurent El Shafey',
     author_email='laurent.el-shafey@idiap.ch',
