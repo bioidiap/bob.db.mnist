@@ -21,12 +21,12 @@ import shutil
 import os
 
 class Database():
-  """Wrapper class for the MNIST database of handwritten digits (http://yann.lecun.com/exdb/mnist/).
+  """Wrapper class for the MNIST database of handwritten digits (https://web-beta.archive.org/web/20161231041016/http://yann.lecun.com/exdb/mnist/).
   """
 
   def __init__(self, data_dir = None):
     """Creates the database. The data_dir argument should be the path to the directory
-    containing the four binary files available from http://yann.lecun.com/exdb/mnist/"""
+    containing the four binary files available from https://web-beta.archive.org/web/20161231041016/http://yann.lecun.com/exdb/mnist/"""
     # initialize members
     import os
     self.m_labels = set(range(0,10))
@@ -80,11 +80,11 @@ class Database():
     elif not os.path.exists(directory):
         os.makedirs(directory)
 
-    print("Downloading the mnist database from http://yann.lecun.com/exdb/mnist/ ...")
+    print("Downloading the mnist database from https://web-beta.archive.org/web/20161231041016/http://yann.lecun.com/exdb/mnist/ ...")
 
     for f in self.m_mnist_filenames:
       tmp_file = os.path.join(directory, f)
-      url = 'http://yann.lecun.com/exdb/mnist/'+f
+      url = 'https://web-beta.archive.org/web/20161231041016/http://yann.lecun.com/exdb/mnist/'+f
 
       if sys.version_info[0] < 3:
         # python2 technique for downloading a file
