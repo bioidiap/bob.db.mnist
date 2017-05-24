@@ -91,13 +91,13 @@ class Database:
 
     Returns:
 
-      images (numpy.ndarray): A 2D array with as many rows as examples in the
-      dataset, as many columns as pixels (actually, there are 28x28 = 784
-      rows). The pixels of each image are unrolled in C-scan order (i.e., first
-      row 0, then row 1, etc.)
+      numpy.ndarray: A 2D array representing the digit images, with as many
+      rows as examples in the dataset, as many columns as pixels (actually,
+      there are 28x28 = 784 rows). The pixels of each image are unrolled in
+      C-scan order (i.e., first row 0, then row 1, etc.)
 
-      labels (numpy.ndarray): A 1D array with as many elements as examples in
-      the dataset
+      numpy.ndarray: A 1D array with as many elements as examples in the
+      dataset, containing the labels for each image returned above.
 
     """
 
