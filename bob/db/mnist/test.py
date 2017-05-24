@@ -1,29 +1,38 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-# Laurent El Shafey <laurent.el-shafey@idiap.ch>
-#
-# Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, version 3 of the License.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 
 """A few checks at the MNIST database.
 """
 
-import unittest
-import bob.db.mnist
+from . import Database
 
+
+def db_available(test):
+  """Decorator for detecting if we're running the test at Idiap"""
+
+  import os
+  import functools
+  from nose.plugins.skip import SkipTest
+
+  @functools.wraps(test)
+  def wrapper(*args, **kwargs):
+
+    from .driver import Interface
+    f = Interface().files()
+
+    for k in f:
+      if not os.path.exists(k):
+        raise SkipTest("Raw database files are not available")
+
+    return test(*args, **kwargs)
+
+  return wrapper
+
+
+@db_available
 def test_query():
-  db = bob.db.mnist.Database()
+  db = Database()
 
   f = db.labels()
   assert len(f) == 10 # number of labels (digits 0 to 9)
@@ -48,19 +57,3 @@ def test_query():
   assert d.shape[0] == 70000
   assert d.shape[1] == 784
   assert l.shape[0] == 70000
-
-
-def test_download():
-  # tests that the files are downloaded *and stored*, when the directory is specified
-  import tempfile, os, shutil
-  temp_dir = tempfile.mkdtemp(prefix='mnist_db_test_')
-  db = bob.db.mnist.Database(temp_dir)
-  del db
-  assert os.path.exists(temp_dir)
-
-  # check that the database works when data is downloaded already
-  db = bob.db.mnist.Database(temp_dir)
-  assert db.data() is not None
-  del db
-
-  shutil.rmtree(temp_dir)
