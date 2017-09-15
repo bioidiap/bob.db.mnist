@@ -5,10 +5,10 @@
    :target: https://www.idiap.ch/software/bob/docs/bob/bob.db.mnist/stable/index.html
 .. image:: http://img.shields.io/badge/docs-latest-orange.svg
    :target: https://www.idiap.ch/software/bob/docs/bob/bob.db.mnist/master/index.html
-.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/master/build.svg
-   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/master
-.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/master/coverage.svg
-   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/master
+.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/v2.1.1/build.svg
+   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/v2.1.1
+.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/v2.1.1/coverage.svg
+   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/v2.1.1
 .. image:: https://img.shields.io/badge/gitlab-project-0000c0.svg
    :target: https://gitlab.idiap.ch/bob/bob.db.mnist
 .. image:: http://img.shields.io/pypi/v/bob.db.mnist.svg
