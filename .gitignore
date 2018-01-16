@@ -18,3 +18,4 @@ build
 *.egg
 src/
 bob/db/mnist/data/
+record.txt
