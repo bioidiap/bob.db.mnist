@@ -1,14 +1,14 @@
 .. vim: set fileencoding=utf-8 :
 .. Wed 17 Aug 08:05:07 CEST 2016
 
-.. image:: http://img.shields.io/badge/docs-stable-yellow.svg
-   :target: https://www.idiap.ch/software/bob/docs/bob/bob.db.mnist/stable/index.html
+.. image:: http://img.shields.io/badge/docs-v2.2.5-yellow.svg
+   :target: https://www.idiap.ch/software/bob/docs/bob/bob.db.mnist/v2.2.5/index.html
 .. image:: http://img.shields.io/badge/docs-latest-orange.svg
    :target: https://www.idiap.ch/software/bob/docs/bob/bob.db.mnist/master/index.html
-.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/master/build.svg
-   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/master
-.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/master/coverage.svg
-   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/master
+.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/v2.2.5/build.svg
+   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/v2.2.5
+.. image:: https://gitlab.idiap.ch/bob/bob.db.mnist/badges/v2.2.5/coverage.svg
+   :target: https://gitlab.idiap.ch/bob/bob.db.mnist/commits/v2.2.5
 .. image:: https://img.shields.io/badge/gitlab-project-0000c0.svg
    :target: https://gitlab.idiap.ch/bob/bob.db.mnist
 .. image:: http://img.shields.io/pypi/v/bob.db.mnist.svg
